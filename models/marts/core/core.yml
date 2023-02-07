@@ -1,0 +1,54 @@
+version: 2
+
+models:
+#################################################
+############## DIM_LOCATIONS ####################
+#################################################
+    - name:  dim_locations
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: core_marts
+        full_refresh: true
+        materialized: table
+
+#################################################
+######### DIM_SALES_ORDERS_REASONS ##############
+#################################################
+    - name:  dim_sales_orders_reasons
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: core_marts
+        full_refresh: true
+        materialized: table
+
+#################################################
+############### DIM_STORES ######################
+#################################################
+    - name:  dim_stores
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: core_marts
+        full_refresh: true
+        materialized: table
+
+#################################################
+############### DIM_CUSTOMERS ######################
+#################################################
+    - name:  dim_customers
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: core_marts
+        full_refresh: true
+        materialized: table
+
+#################################################
+############## FCT_SALES ########################
+#################################################
+    - name:  fct_sales
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: core_marts
+        full_refresh: true
+        materialized: incremental
+        incremental_strategy: merge
+        partition_by: {'field': 'dte_order_date', 'data_type': 'DATE'}

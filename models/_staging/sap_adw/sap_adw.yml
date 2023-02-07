@@ -1,9 +1,9 @@
 version: 2
 
+models:
 #################################################
 ################# STG_PEOPLE ####################
 #################################################
-models:
     - name:  stg_people    
       description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
       config:
@@ -58,7 +58,6 @@ models:
 #################################################
 ############## STG_LOCATIONS ####################
 #################################################
-models:
     - name:  stg_locations    
       description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
       config:
@@ -130,7 +129,6 @@ models:
 #################################################
 ############## STG_STORES ####################
 #################################################
-models:
     - name:  stg_stores
       description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
       config:
@@ -152,4 +150,43 @@ models:
 
           - name: dte_modified_date
             description: "description here"
-          
+
+#################################################
+######### STG_SALES_ORDERS_REASONS ##############
+#################################################
+    - name:  stg_sales_orders_reasons
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: staging
+        full_refresh: true
+        materialized: view
+
+#################################################
+############# STG_SALES_ORDERS ##################
+#################################################
+    - name:  stg_sales_orders
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: staging
+        full_refresh: true
+        materialized: view
+
+#################################################
+################ STG_CUSTOMERS ##################
+#################################################
+    - name:  stg_customers
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: staging
+        full_refresh: true
+        materialized: view
+
+#################################################
+################ STG_PRODUCTS ##################
+#################################################
+    - name:  stg_products
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: staging
+        full_refresh: true
+        materialized: view

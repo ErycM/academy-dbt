@@ -1,0 +1,12 @@
+version: 2
+
+models:
+#################################################
+########### MDM_DET_SALES_ORDERS ################
+#################################################
+    - name:  mdm_det_sales_orders
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: mdm_marts
+        full_refresh: true
+        materialized: table

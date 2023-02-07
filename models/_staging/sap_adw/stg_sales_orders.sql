@@ -10,6 +10,10 @@ salesorderheader AS (
     SELECT * FROM {{ ref("salesorderheader") }}
 ),
 
+creditcard AS (
+    SELECT * FROM {{ ref("creditcard") }}
+),
+
 final AS (
     SELECT
         sod.salesorderdetailid AS int_sales_order_detail_id,
@@ -43,10 +47,16 @@ final AS (
         soh.totaldue AS flt_total_due,
         soh.comment AS int_comment,
         soh.rowguid AS str_rowguid,
+        cc.cardtype AS str_card_type,
+        cc.cardnumber AS int_card_number,
+        cc.expmonth AS int_exp_month,
+        cc.expyear AS int_exp_year,
+        DATE(cc.modifieddate) AS dte_credit_card_modified_date,
         DATE(sod.modifieddate) AS dte_sales_order_detail_modified_date,
         DATE(soh.modifieddate) AS dte_sales_order_header_modified_date
     FROM salesorderdetail AS sod
-    LEFT JOIN salesorderheader AS soh ON soh.salesorderid = sod.salesorderid    
+    LEFT JOIN salesorderheader AS soh ON soh.salesorderid = sod.salesorderid
+    LEFT JOIN creditcard AS cc ON cc.creditcardid = soh.creditcardid    
 )
 
 SELECT * FROM final

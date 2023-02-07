@@ -37,7 +37,12 @@ models:
     marts:
       _staging:
         +schema: staging
+      marts:
+        +schema: core_marts
+        +schema: mdm_marts
 
+vars:
+  DBT_CURRENT_DATE: CURRENT_DATE() 
 
 seeds:
   modern_analytics_stack_project: # <-- Name of the project. If you renamed your project you have to change this as well
