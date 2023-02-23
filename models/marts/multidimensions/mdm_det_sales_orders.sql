@@ -18,15 +18,26 @@ dim_locations AS (
     SELECT * FROM {{ ref("dim_locations") }}    
 ),
 
+dim_products AS (
+    SELECT * FROM {{ ref("dim_products") }}    
+),
+
 final AS (
     SELECT
-        fs.int_sales_order_detail_id,
+        fs.int_sales_order_id,
         fs.int_order_qty,
-        fs.int_unit_price,
+        fs.flt_unit_price,
         fs.flt_subtotal,
         fs.str_card_type,
         fs.dte_order_date,
-        fs.int_status,
+        fs.int_product_id,
+        dp.str_product_name,
+        dp.int_product_sub_category_id,
+        dp.str_product_sub_category_name,
+        dp.int_product_category_id,
+        dp.str_product_category_name,
+        fs.int_order_status,
+        fs.str_order_status_name,
         dl.int_address_id,
         dl.str_address_line1,
         dl.str_address_line2,
@@ -38,7 +49,7 @@ final AS (
         dl.str_postal_code,
         dl.str_spatial_location,
         dl.str_contry_region_code,
-        dl.str_country_region_code,
+        dl.str_country_region_name,
         dc.int_people_id,
         dc.str_people_type,
         dc.int_customer_id,
@@ -61,7 +72,8 @@ final AS (
     LEFT JOIN dim_sales_orders_reasons AS sor ON sor.int_sales_order_id = fs.int_sales_order_id
     LEFT JOIN dim_customers AS dc ON dc.int_customer_id = fs.int_customer_id
     LEFT JOIN dim_locations AS dl ON dl.int_address_id = fs.int_ship_to_address_id
-    {{ dbt_utils.group_by(n=27) }}
+    LEFT JOIN dim_products AS dp ON dp.int_product_id = fs.int_product_id
+    {{ dbt_utils.group_by(n=34) }}
 )
 
 SELECT * FROM final

@@ -21,14 +21,24 @@ final AS (
         sod.orderqty AS int_order_qty,
         sod.productid AS int_product_id,
         sod.specialofferid AS int_special_offer_id,
-        sod.unitprice AS int_unit_price,
-        sod.unitpricediscount AS int_unit_price_discount,
+        sod.unitprice AS flt_unit_price,
+        sod.unitpricediscount AS flt_unit_price_discount,
         soh.salesorderid AS int_sales_order_id,
         soh.revisionnumber AS int_revision_number,
         DATE(soh.orderdate) AS dte_order_date,
         DATE(soh.duedate) AS dte_due_date,
         DATE(soh.shipdate) AS dte_ship_date,
-        soh.status AS int_status,
+        soh.status AS int_order_status,
+        -- Description found here https://dataedo.com/samples/html/AdventureWorks/doc/AdventureWorks_2/tables/Sales_SalesOrderHeader_185.html
+        CASE 
+            WHEN soh.status = 1 THEN 'In_process'
+            WHEN soh.status = 2 THEN 'Approved'
+            WHEN soh.status = 3 THEN 'Backordered' 
+            WHEN soh.status = 4 THEN 'Rejected' 
+            WHEN soh.status = 5 THEN 'Shipped'
+            WHEN soh.status = 6 THEN 'Cancelled' 
+            ELSE 'N/A'
+        end as str_order_status_name,
         soh.onlineorderflag AS bol_online_order_flag,
         soh.purchaseordernumber AS str_purchase_order_number,
         soh.accountnumber AS str_account_number,

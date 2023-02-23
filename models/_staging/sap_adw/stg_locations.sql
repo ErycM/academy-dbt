@@ -28,7 +28,7 @@ final AS (
         adr.postalcode AS str_postal_code,
         adr.spatiallocation AS str_spatial_location,
         stp.countryregioncode AS str_contry_region_code,
-        ctr.name AS str_country_region_code,
+        ctr.name AS str_country_region_name,
         DATE(ctr.modifieddate) AS dte_country_region_modified_date,
         DATE(stp.modifieddate) AS dte_state_province_modified_date,
         DATE(adr.modifieddate) AS dte_modified_date
