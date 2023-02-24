@@ -1,0 +1,109 @@
+version: 2
+
+models:
+#################################################
+########### MDM_DET_SALES_ORDERS ################
+#################################################
+    - name:  mdm_det_sales_orders
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: mdm_marts
+        full_refresh: true
+        materialized: table
+      columns:
+        - name: int_sales_order_detail_id
+          description: "Description of int_sales_order_detail_id"
+          tests:
+            - unique
+            - not_null
+        - name: int_sales_order_id
+          description: "Description of int_sales_order_id"            
+        - name: int_order_qty
+          description: "Description of int_order_qty"
+        - name: flt_unit_price
+          description: "Description of flt_unit_price"
+        - name: flt_subtotal
+          description: "Description of flt_subtotal"
+        - name: str_card_type
+          description: "Description of str_card_type"
+        - name: dte_order_date
+          description: "Description of dte_order_date"
+        - name: int_product_id
+          description: "Description of int_product_id"
+          tests:
+            - not_null
+            
+        - name: str_product_name
+          description: "Description of str_product_name"
+        - name: int_product_sub_category_id
+          description: "Description of int_product_sub_category_id"
+        - name: str_product_sub_category_name
+          description: "Description of str_product_sub_category_name"
+        - name: int_product_category_id
+          description: "Description of int_product_category_id"
+        - name: str_product_category_name
+          description: "Description of str_product_category_name"
+        - name: int_order_status
+          description: "Description of int_order_status"
+        - name: str_order_status_name
+          description: "Description of str_order_status_name"
+        - name: int_address_id
+          description: "Description of int_address_id"
+        - name: str_address_line1
+          description: "Description of str_address_line1"
+        - name: str_address_line2
+          description: "Description of str_address_line2"
+        - name: str_city
+          description: "Description of str_city"
+        - name: int_state_provice_id
+          description: "Description of int_state_provice_id"
+        - name: str_state_province_code
+          description: "Description of str_state_province_code"
+        - name: bol_is_only_state_province_flag
+          description: "Description of bol_is_only_state_province_flag"
+        - name: str_state_province_name
+          description: "Description of str_state_province_name"
+        - name: str_postal_code
+          description: "Description of str_postal_code"
+        - name: str_spatial_location
+          description: "Description of str_spatial_location"
+        - name: str_country_region_code
+          description: "Description of str_country_region_code"
+        - name: str_country_region_name
+          description: "Description of str_country_region_name"
+        - name: int_people_id
+          description: "Description of int_people_id"
+        - name: str_people_type
+          description: "Description of str_people_type"
+        - name: int_customer_id
+          description: "Description of int_customer_id"
+        - name: str_first_name
+          description: "Description of str_first_name"
+        - name: str_middle_name
+          description: "Description of str_middle_name"
+        - name: str_last_name
+          description: "Description of str_last_name"
+        - name: int_store_id
+          description: "Description of int_store_id"            
+        - name: str_store_name
+          description: "Description of str_store_name"
+        - name: int_sales_reason_type_Other
+          description: "Description of int_sales_reason_type_Other"
+        - name: int_sales_reason_type_Promotion
+          description: "Description of int_sales_reason_type_Promotion"
+        - name: int_sales_reason_type_Marketing
+          description: "Description of int_sales_reason_type_Marketing"
+        - name: int_sales_reason_name_price
+          description: "Description of int_sales_reason_name_price"
+        - name: int_sales_reason_name_on_promotion
+          description: "Description of int_sales_reason_name_on_promotion"
+        - name: int_sales_reason_name_manufacturer
+          description: "Description of int_sales_reason_name_manufacturer"
+        - name: int_sales_reason_name_quality
+          description: "Description of int_sales_reason_name_quality"
+        - name: int_sales_reason_name_other
+          description: "Description of int_sales_reason_name_other"
+        - name: int_sales_reason_name_review
+          description: "Description of int_sales_reason_name_review"
+        - name: int_sales_reason_name_television__advertisement
+          description: "Description of int_sales_reason_name_television__advertisement"

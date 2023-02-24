@@ -9,7 +9,7 @@ WITH person AS (
 final AS (
     SELECT
         businessentityid AS int_people_id,
-        persontype AS str_person_type,
+        persontype AS str_people_type,
         namestyle AS bol_name_style,
         title AS str_title,
         firstname AS str_first_name,
@@ -19,8 +19,7 @@ final AS (
         emailpromotion AS int_email_promotion,
         IF(additionalcontactinfo = '[NULL]', NULL, additionalcontactinfo) AS str_additional_contact_info,
         demographics AS str_demographics,
-        rowguid AS str_rowguid,
-        DATE(modifieddate) AS dte_modified_date
+        DATE(modifieddate) AS dte_people_modified_date
     FROM person
 )
 

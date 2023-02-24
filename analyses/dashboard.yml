@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: "adventure_works_sales_analysis"
+    type: dashboard
+    maturity: high
+    url: https://lookerstudio.google.com/reporting/bc70f7b5-a976-46a2-bf2f-1aa7be288cee
+    description: >
+      "Dashboard created to analyze adventure works sales metrics"
+
+    depends_on:
+      - ref('mdm_det_sales_orders')
+
+    owner:
+      name: "Eryc Masselli"
+      email: erycmasselli@gmail.com

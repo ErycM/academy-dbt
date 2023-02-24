@@ -2,7 +2,7 @@
 -- Name: Eryc Masselli
 -- Created_at: 2023-01-05
 
-WITH person AS (
+WITH store AS (
     SELECT * FROM {{ ref("store") }}
 ),
 
