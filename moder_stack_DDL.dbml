@@ -1,0 +1,160 @@
+// NAME: ERYC MASSELLI
+// DATE: 2023-02-24
+// LINK: https://dbdiagram.io/d/63e673a5296d97641d800bd6
+
+// seeds (sap_adw schema)
+
+Table sap_adw.salesorderdetail {
+  salesorderdetailid uuid [pk]
+}
+
+Table sap_adw.salesorderheader {
+  salesorderid uuid [pk]
+}
+
+Table sap_adw.creditcard {
+  creditcardid uuid [pk]
+}
+
+Table sap_adw.salesorderheadersalesreason {
+  salesorderid uuid [pk]
+  salesreasonid uuid [pk]
+}
+
+Table sap_adw.salesreason {
+  salesreasonid uuid [pk]
+}
+
+Table sap_adw.customer {
+  customerid uuid [pk]
+}
+
+Table sap_adw.store {
+  storeid uuid [pk]
+}
+
+Table sap_adw.person {
+  businessentityid uuid [pk]
+}
+
+Table sap_adw.stateprovince {
+  stateprovinceid uuid [pk]
+}
+
+Table sap_adw.countryregion {
+  countryregioncode uuid [pk]
+}
+
+Table sap_adw.address {
+  addressid uuid [pk]
+}
+
+Table sap_adw.product {
+  productid uuid [pk]
+}
+
+Table sap_adw.productsubcategory  {
+  productsubcategoryid uuid [pk]
+}
+
+Table sap_adw.productcategory  {
+  productcategoryid uuid [pk]
+}
+
+
+// fact and dimensions (core_marts schema)
+
+Table core_marts.dim_locations  {
+  int_address_id uuid
+  int_state_provice_id uuid
+  str_country_region_code uuid
+}
+
+Table core_marts.dim_sales_orders_reasons  {
+  int_sales_reason_id uuid
+  int_sales_order_id uuid
+}
+
+Table core_marts.fct_sales  {
+  int_sales_order_detail_id uuid
+  int_sales_order_id uuid
+  int_credit_card_id uuid
+}
+
+Table core_marts.dim_customers  {
+  int_customer_id uuid
+  int_people_id uuid
+  int_store_id uuid
+}
+
+Table core_marts.dim_products  {
+  int_product_id uuid
+  int_product_sub_category_id uuid
+  int_product_category_id uuid
+}
+
+
+// multidimensional marts (mdm_marts schema)
+
+
+Table mdm_marts.mdm_det_sales_orders  {
+  int_sales_order_detail_id uuid
+  int_sales_order_id uuid
+  int_credit_card_id uuid
+  int_sales_reason_id uuid
+  int_customer_id uuid
+  int_store_id uuid
+  int_people_id uuid
+  int_address_id uuid
+  str_country_region_code uuid
+  int_state_provice_id uuid
+  int_product_id uuid
+  int_product_sub_category_id uuid
+  int_product_category_id uuid
+}
+
+
+
+// Main Relations
+
+//fct_sales
+Ref: sap_adw.salesorderdetail.salesorderdetailid - core_marts.fct_sales.int_sales_order_detail_id
+Ref: sap_adw.salesorderheader.salesorderid < core_marts.fct_sales.int_sales_order_id
+Ref: sap_adw.creditcard.creditcardid < core_marts.fct_sales.int_credit_card_id
+
+//dim_sales_orders_reasons
+Ref: sap_adw.salesorderheadersalesreason.salesorderid - core_marts.dim_sales_orders_reasons.int_sales_order_id
+Ref: sap_adw.salesreason.salesreasonid < core_marts.dim_sales_orders_reasons.int_sales_reason_id
+
+//dim_customers
+Ref: sap_adw.customer.customerid - core_marts.dim_customers.int_customer_id
+Ref: sap_adw.store.storeid < core_marts.dim_customers.int_store_id
+Ref: sap_adw.person.businessentityid < core_marts.dim_customers.int_people_id
+
+//dim_locations
+Ref: sap_adw.address.addressid - core_marts.dim_locations.int_address_id
+Ref: sap_adw.countryregion.countryregioncode < core_marts.dim_locations.str_country_region_code
+Ref: sap_adw.stateprovince.stateprovinceid < core_marts.dim_locations.int_state_provice_id
+
+//dim_products
+Ref: sap_adw.product.productid - core_marts.dim_products.int_product_id
+Ref: sap_adw.productsubcategory.productsubcategoryid < core_marts.dim_products.int_product_sub_category_id
+Ref: sap_adw.productcategory.productcategoryid < core_marts.dim_products.int_product_category_id
+
+// Multidimensional Relations
+
+//mdm_det_sales_orders
+Ref: core_marts.fct_sales.int_sales_order_detail_id - mdm_marts.mdm_det_sales_orders.int_sales_order_detail_id
+Ref: core_marts.fct_sales.int_sales_order_id < mdm_marts.mdm_det_sales_orders.int_sales_order_id
+Ref: core_marts.fct_sales.int_credit_card_id < mdm_marts.mdm_det_sales_orders.int_credit_card_id
+Ref: core_marts.dim_sales_orders_reasons.int_sales_order_id < mdm_marts.mdm_det_sales_orders.int_sales_order_id
+Ref: core_marts.dim_sales_orders_reasons.int_sales_reason_id < mdm_marts.mdm_det_sales_orders.int_sales_reason_id
+Ref: core_marts.dim_customers.int_customer_id < mdm_marts.mdm_det_sales_orders.int_customer_id
+Ref: core_marts.dim_customers.int_store_id < mdm_marts.mdm_det_sales_orders.int_store_id
+Ref: core_marts.dim_customers.int_people_id < mdm_marts.mdm_det_sales_orders.int_people_id
+Ref: core_marts.dim_locations.int_address_id < mdm_marts.mdm_det_sales_orders.int_address_id
+Ref: core_marts.dim_locations.str_country_region_code < mdm_marts.mdm_det_sales_orders.str_country_region_code
+Ref: core_marts.dim_locations.int_state_provice_id < mdm_marts.mdm_det_sales_orders.int_state_provice_id
+Ref: core_marts.dim_products.int_product_id < mdm_marts.mdm_det_sales_orders.int_product_id
+Ref: core_marts.dim_products.int_product_sub_category_id < mdm_marts.mdm_det_sales_orders.int_product_sub_category_id
+Ref: core_marts.dim_products.int_product_category_id < mdm_marts.mdm_det_sales_orders.int_product_category_id
