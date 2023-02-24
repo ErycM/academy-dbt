@@ -10,6 +10,46 @@ models:
         schema: core_marts
         full_refresh: true
         materialized: table
+      columns:
+        - name: int_address_id
+          description: "Description of int_address_id"
+          tests:
+            - unique
+            - not_null
+        - name: str_address_line1
+          description: "Description of str_address_line1"
+        - name: str_address_line2
+          description: "Description of str_address_line2"
+        - name: str_city
+          description: "Description of str_city"
+        - name: int_state_provice_id
+          description: "Description of int_state_provice_id"
+          tests:
+            - not_null
+        - name: str_state_province_code
+          description: "Description of str_state_province_code"
+        - name: bol_is_only_state_province_flag
+          description: "Description of bol_is_only_state_province_flag"
+        - name: str_state_province_name
+          description: "Description of str_state_province_name"
+        - name: int_territory_id
+          description: "Description of int_territory_id"
+          tests:
+            - not_null
+        - name: str_postal_code
+          description: "Description of str_postal_code"
+        - name: str_spatial_location
+          description: "Description of str_spatial_location"
+        - name: str_country_region_code
+          description: "Description of str_country_region_code"
+        - name: str_country_region_name
+          description: "Description of str_country_region_name"
+        - name: dte_country_region_modified_date
+          description: "Description of dte_country_region_modified_date"
+        - name: dte_state_province_modified_date
+          description: "Description of dte_state_province_modified_date"
+        - name: dte_modified_date
+          description: "Description of dte_modified_date"
 
 #################################################
 ######### DIM_SALES_ORDERS_REASONS ##############
@@ -20,16 +60,28 @@ models:
         schema: core_marts
         full_refresh: true
         materialized: table
-
-#################################################
-############### DIM_STORES ######################
-#################################################
-    - name:  dim_stores
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
-      config:
-        schema: core_marts
-        full_refresh: true
-        materialized: table
+      tests:
+        - dbt_utils.unique_combination_of_columns:
+            combination_of_columns:
+              - int_sales_reason_id
+              - int_sales_order_id
+      columns:
+        - name: int_sales_reason_id
+          description: "Description of int_sales_reason_id"
+            
+        - name: int_sales_order_id
+          description: "Description of int_sales_order_id"
+            
+        - name: str_sales_reason_name
+          description: "Description of str_sales_reason_name"
+        - name: str_sales_reason_name_cd
+          description: "Description of str_sales_reason_name_cd"
+        - name: str_sales_reason_type
+          description: "Description of str_sales_reason_type"
+        - name: dte_sales_reason_modied_Date
+          description: "Description of dte_sales_reason_modied_Date"
+        - name: dte_sales_order_header_reason_modified_date
+          description: "Description of dte_sales_order_header_reason_modified_date"
 
 #################################################
 ############### DIM_CUSTOMERS ######################
@@ -40,6 +92,47 @@ models:
         schema: core_marts
         full_refresh: true
         materialized: table
+      columns:
+        - name: int_customer_id
+          description: "Description of int_customer_id"
+          tests:
+            - not_null
+            - unique
+            
+        - name: int_store_id
+          description: "Description of int_store_id"
+        - name: int_territory_id
+          description: "Description of int_territory_id"
+        - name: int_people_id
+          description: "Description of int_people_id"
+        - name: str_people_type
+          description: "Description of str_people_type"
+        - name: bol_name_style
+          description: "Description of bol_name_style"
+        - name: str_title
+          description: "Description of str_title"
+        - name: str_first_name
+          description: "Description of str_first_name"            
+        - name: str_middle_name
+          description: "Description of str_middle_name"
+        - name: str_last_name
+          description: "Description of str_last_name"
+        - name: str_suffix
+          description: "Description of str_suffix"
+        - name: int_email_promotion
+          description: "Description of int_email_promotion"
+        - name: str_additional_contact_info
+          description: "Description of str_additional_contact_info"
+        - name: str_demographics
+          description: "Description of str_demographics"
+        - name: dte_customer_modified_date
+          description: "Description of dte_customer_modified_date"
+        - name: dte_people_modified_date
+          description: "Description of dte_people_modified_date"
+        - name: str_store_name
+          description: "Description of str_store_name"
+        - name: int_sales_people_id
+          description: "Description of int_sales_people_id"
 
 #################################################
 ############## FCT_SALES ########################
@@ -52,3 +145,162 @@ models:
         materialized: incremental
         incremental_strategy: merge
         partition_by: {'field': 'dte_order_date', 'data_type': 'DATE'}
+      columns:
+        - name: int_sales_order_detail_id
+          description: "Description of int_sales_order_detail_id"
+          tests:
+            - unique
+            - not_null
+            
+        - name: str_carrier_trabking_number
+          description: "Description of str_carrier_trabking_number"
+        - name: int_order_qty
+          description: "Description of int_order_qty"
+        - name: int_product_id
+          description: "Description of int_product_id"
+          tests:
+            - not_null
+            
+        - name: int_special_offer_id
+          description: "Description of int_special_offer_id"
+        - name: flt_unit_price
+          description: "Description of flt_unit_price"
+        - name: flt_unit_price_discount
+          description: "Description of flt_unit_price_discount"
+        - name: int_sales_order_id
+          description: "Description of int_sales_order_id"
+          tests:
+            - not_null
+            
+        - name: int_revision_number
+          description: "Description of int_revision_number"
+        - name: dte_order_date
+          description: "Description of dte_order_date"
+        - name: dte_due_date
+          description: "Description of dte_due_date"
+        - name: dte_ship_date
+          description: "Description of dte_ship_date"
+        - name: int_order_status
+          description: "Description of int_order_status"
+        - name: str_order_status_name
+          description: "Description of str_order_status_name"
+        - name: bol_online_order_flag
+          description: "Description of bol_online_order_flag"
+        - name: str_purchase_order_number
+          description: "Description of str_purchase_order_number"
+        - name: str_account_number
+          description: "Description of str_account_number"
+        - name: int_customer_id
+          description: "Description of int_customer_id"
+          tests:
+            - not_null
+            
+        - name: int_people_id
+          description: "Description of int_people_id"            
+        - name: int_territory_id
+          description: "Description of int_territory_id"
+        - name: int_bill_to_address_id
+          description: "Description of int_bill_to_address_id"
+        - name: int_ship_to_address_id
+          description: "Description of int_ship_to_address_id"
+        - name: int_ship_method_id
+          description: "Description of int_ship_method_id"
+        - name: int_credit_card_id
+          description: "Description of int_credit_card_id"
+        - name: int_credit_card_approval_code
+          description: "Description of int_credit_card_approval_code"
+        - name: int_currency_rate_id
+          description: "Description of int_currency_rate_id"
+        - name: flt_subtotal
+          description: "Description of flt_subtotal"
+        - name: flt_tax_amt
+          description: "Description of flt_tax_amt"
+        - name: flt_freight
+          description: "Description of flt_freight"
+        - name: flt_total_due
+          description: "Description of flt_total_due"
+        - name: int_comment
+          description: "Description of int_comment"
+        - name: str_card_type
+          description: "Description of str_card_type"
+        - name: int_card_number
+          description: "Description of int_card_number"
+        - name: int_exp_month
+          description: "Description of int_exp_month"
+        - name: int_exp_year
+          description: "Description of int_exp_year"
+        - name: dte_credit_card_modified_date
+          description: "Description of dte_credit_card_modified_date"
+        - name: dte_sales_order_detail_modified_date
+          description: "Description of dte_sales_order_detail_modified_date"
+        - name: dte_sales_order_header_modified_date
+          description: "Description of dte_sales_order_header_modified_date"
+
+#################################################
+############## DIM_PRODUCTS #####################
+#################################################
+    - name:  dim_products
+      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      config:
+        schema: core_marts
+        full_refresh: true
+        materialized: table
+      columns:
+        - name: int_product_id
+          description: "description of int_product_id"
+          tests:
+            - unique
+            - not_null
+            
+        - name: str_product_name
+          description: "description of str_product_name"
+        - name: str_product_number
+          description: "description of str_product_number"
+        - name: bol_product_make_flag
+          description: "description of bol_product_make_flag"
+        - name: bol_product_finished_goods_flag
+          description: "description of bol_product_finished_goods_flag"
+        - name: str_product_color
+          description: "description of str_product_color"
+        - name: int_safety_product_stock_level
+          description: "description of int_safety_product_stock_level"
+        - name: int_product_reorder_point
+          description: "description of int_product_reorder_point"
+        - name: flt_standard_cost
+          description: "description of flt_standard_cost"
+        - name: flt_list_price
+          description: "description of flt_list_price"
+        - name: str_product_size
+          description: "description of str_product_size"
+        - name: str_product_size_unit_measure_code
+          description: "description of str_product_size_unit_measure_code"
+        - name: str_product_weight_unit_measure_code
+          description: "description of str_product_weight_unit_measure_code"
+        - name: flt_product_weight
+          description: "description of flt_product_weight"
+        - name: int_product_days_to_manufacture
+          description: "description of int_product_days_to_manufacture"
+        - name: str_product_line
+          description: "description of str_product_line"
+        - name: str_product_class
+          description: "description of str_product_class"
+        - name: str_product_style
+          description: "description of str_product_style"
+        - name: int_product_sub_category_id
+          description: "description of int_product_sub_category_id"
+        - name: str_product_sub_category_name
+          description: "description of str_product_sub_category_name"
+        - name: int_product_category_id
+          description: "description of int_product_category_id"
+        - name: str_product_category_name
+          description: "description of str_product_category_name"
+        - name: int_product_model_id
+          description: "description of int_product_model_id"
+        - name: dte_product_sell_start_date
+          description: "description of dte_product_sell_start_date"
+        - name: dte_product_sell_end_date
+          description: "description of dte_product_sell_end_date"
+        - name: int_product_discontinue_date
+          description: "description of int_product_discontinue_date"
+        - name: dte_product_modified_date
+          description: "description of dte_product_modified_date"

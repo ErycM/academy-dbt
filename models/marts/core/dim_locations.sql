@@ -19,7 +19,7 @@ final AS (
         sl.int_territory_id,
         sl.str_postal_code,
         sl.str_spatial_location,
-        sl.str_contry_region_code,
+        sl.str_country_region_code,
         sl.str_country_region_name,
         sl.dte_country_region_modified_date,
         sl.dte_state_province_modified_date,

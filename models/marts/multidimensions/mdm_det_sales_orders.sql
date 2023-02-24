@@ -24,6 +24,7 @@ dim_products AS (
 
 final AS (
     SELECT
+        fs.int_sales_order_detail_id,
         fs.int_sales_order_id,
         fs.int_order_qty,
         fs.flt_unit_price,
@@ -48,7 +49,7 @@ final AS (
         dl.str_state_province_name,
         dl.str_postal_code,
         dl.str_spatial_location,
-        dl.str_contry_region_code,
+        dl.str_country_region_code,
         dl.str_country_region_name,
         dc.int_people_id,
         dc.str_people_type,
@@ -73,7 +74,7 @@ final AS (
     LEFT JOIN dim_customers AS dc ON dc.int_customer_id = fs.int_customer_id
     LEFT JOIN dim_locations AS dl ON dl.int_address_id = fs.int_ship_to_address_id
     LEFT JOIN dim_products AS dp ON dp.int_product_id = fs.int_product_id
-    {{ dbt_utils.group_by(n=34) }}
+    {{ dbt_utils.group_by(n=35) }}
 )
 
 SELECT * FROM final

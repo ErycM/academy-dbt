@@ -19,7 +19,7 @@ final AS (
         DATE(sre.modifieddate) AS dte_sales_reason_modied_Date,
         DATE(soh.modifieddate) AS dte_sales_order_header_reason_modified_date
     FROM salesorderheadersalesreason AS soh
-    LEFT JOIN salesreason AS sre ON sre.salesreasonid = soh.salesreasonid  
+    LEFT JOIN salesreason AS sre ON sre.salesreasonid = soh.salesreasonid
 )
 
 SELECT * FROM final

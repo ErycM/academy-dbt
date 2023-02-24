@@ -38,7 +38,7 @@ final AS (
             WHEN soh.status = 5 THEN 'Shipped'
             WHEN soh.status = 6 THEN 'Cancelled' 
             ELSE 'N/A'
-        end as str_order_status_name,
+        end AS str_order_status_name,
         soh.onlineorderflag AS bol_online_order_flag,
         soh.purchaseordernumber AS str_purchase_order_number,
         soh.accountnumber AS str_account_number,

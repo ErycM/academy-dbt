@@ -1,4 +1,4 @@
--- Model Name: stg_produts
+-- Model Name: stg_products
 -- Name: Eryc Masselli
 -- Created_at: 2023-01-05
 
