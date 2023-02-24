@@ -12,48 +12,48 @@ models:
         materialized: view
       columns: 
         - name: int_people_id
-          description: "description here"
+          description: "Description of int_people_id"
           tests:
               - not_null
               - unique
         
         - name: str_person_type
-          description: "description here"
+          description: "Description of str_person_type"
         
         - name: bol_name_style
-          description: "description here"
+          description: "Description of bol_name_style"
 
         - name: str_title
-          description: "description here"
+          description: "Description of str_title"
 
         - name: str_first_name
-          description: "description here"
+          description: "Description of str_first_name"
           tests:
               - not_null
 
         - name: str_middle_name
-          description: "description here"
+          description: "Description of str_middle_name"
 
         - name: str_last_name
-          description: "description here"
+          description: "Description of str_last_name"
 
         - name: str_suffix
-          description: "description here"
+          description: "Description of str_suffix"
 
         - name: int_email_promotion
-          description: "description here"
+          description: "Description of int_email_promotion"
 
         - name: str_additional_contact_info
-          description: "description here"
+          description: "Description of str_additional_contact_info"
 
         - name: str_demographics
-          description: "description here"
+          description: "Description of str_demographics"
 
         - name: str_rowguid
-          description: "description here"
+          description: "Description of str_rowguid"
 
         - name: dte_modified_date
-          description: "description here"
+          description: "Description of dte_modified_date"
 
 #################################################
 ############## STG_LOCATIONS ####################
@@ -66,68 +66,68 @@ models:
         materialized: view
       columns: 
         - name: int_address_id
-          description: "description here"
+          description: "Description of int_address_id"
           tests:
               - not_null
               - unique
 
         - name: str_address_line1
-          description: "description here"
+          description: "Description of str_address_line1"
         
         - name: str_address_line2
-          description: "description here"
+          description: "Description of str_address_line2"
 
         - name: str_city
-          description: "description here"
+          description: "Description of str_city"
 
         - name: int_state_provice_id
-          description: "description here"
+          description: "Description of int_state_provice_id"
           tests:
               - not_null
 
         - name: str_state_province_code
-          description: "description here"
+          description: "Description of str_state_province_code"
 
         - name: bol_is_only_state_province_flag
-          description: "description here"
+          description: "Description of bol_is_only_state_province_flag"
 
         - name: str_state_province_name
-          description: "description here"
+          description: "Description of str_state_province_name"
 
         - name: int_territory_id
-          description: "description here"
+          description: "Description of int_territory_id"
           tests:
               - not_null
 
         - name: str_postal_code
-          description: "description here"
+          description: "Description of str_postal_code"
           tests:
               - not_null
         
         - name: str_spatial_location
-          description: "description here"
+          description: "Description of str_spatial_location"
 
         - name: str_country_region_code
-          description: "description here"
+          description: "Description of str_country_region_code"
           tests:
               - not_null
         
         - name: str_country_region_name
-          description: "description here"
+          description: "Description of str_country_region_name"
           tests:
               - not_null
         
         - name: dte_country_region_modified_date
-          description: "description here"
+          description: "Description of dte_country_region_modified_date"
         
         - name: dte_state_province_modified_date
-          description: "description here"
+          description: "Description of dte_state_province_modified_date"
 
         - name: dte_modified_date
-          description: "description here"
+          description: "Description of dte_modified_date"
 
 #################################################
-############## STG_STORES ####################
+############## STG_STORES #######################
 #################################################
     - name:  stg_stores
       description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
@@ -137,19 +137,19 @@ models:
         materialized: view
       columns: 
         - name: int_store_id
-          description: "description here"
+          description: "Description of int_store_id"
         
         - name: str_store_name
-          description: "description here"
+          description: "Description of str_store_name"
 
         - name: int_sales_people_id
-          description: "description here"
+          description: "Description of int_sales_people_id"
 
         - name: str_demographics
-          description: "description here"
+          description: "Description of str_demographics"
 
         - name: dte_modified_date
-          description: "description here"
+          description: "Description of dte_modified_date"
 
 #################################################
 ######### STG_SALES_ORDERS_REASONS ##############
