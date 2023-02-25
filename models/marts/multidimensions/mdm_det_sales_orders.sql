@@ -28,7 +28,8 @@ final AS (
         fs.int_sales_order_id,
         fs.int_order_qty,
         fs.flt_unit_price,
-        fs.flt_subtotal,
+        fs.flt_total_unit_price,
+        fs.flt_total_unit_price_discount,
         fs.str_card_type,
         fs.dte_order_date,
         fs.int_product_id,
@@ -74,7 +75,7 @@ final AS (
     LEFT JOIN dim_customers AS dc ON dc.int_customer_id = fs.int_customer_id
     LEFT JOIN dim_locations AS dl ON dl.int_address_id = fs.int_ship_to_address_id
     LEFT JOIN dim_products AS dp ON dp.int_product_id = fs.int_product_id
-    {{ dbt_utils.group_by(n=35) }}
+    {{ dbt_utils.group_by(n=36) }}
 )
 
 SELECT * FROM final

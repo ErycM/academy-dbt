@@ -22,8 +22,6 @@ models:
           description: "Description of int_order_qty"
         - name: flt_unit_price
           description: "Description of flt_unit_price"
-        - name: flt_subtotal
-          description: "Description of flt_subtotal"
         - name: str_card_type
           description: "Description of str_card_type"
         - name: dte_order_date

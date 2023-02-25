@@ -21,6 +21,7 @@ final AS (
         sod.orderqty AS int_order_qty,
         sod.productid AS int_product_id,
         sod.specialofferid AS int_special_offer_id,
+        -- Sum of unit_price = sub_total
         sod.unitprice AS flt_unit_price,
         sod.unitpricediscount AS flt_unit_price_discount,
         soh.salesorderid AS int_sales_order_id,
@@ -51,7 +52,6 @@ final AS (
         soh.creditcardid AS int_credit_card_id,
         soh.creditcardapprovalcode AS int_credit_card_approval_code,
         soh.currencyrateid AS int_currency_rate_id,
-        soh.subtotal AS flt_subtotal,
         soh.taxamt AS flt_tax_amt,
         soh.freight AS flt_freight,
         soh.totaldue AS flt_total_due,
