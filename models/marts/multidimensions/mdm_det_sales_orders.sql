@@ -60,6 +60,10 @@ final AS (
         dc.str_last_name,
         dc.int_store_id,
         dc.str_store_name,
+        -- Knowing that a purchase order can have more than one sales reason, and also many types, 
+        -- it is understood as a good alternative to use the pivot table function of dbt utils to insert these specifications in this model.
+        -- This way we managed to keep this analysis more centralized for the dashboard.
+        -- The classification of each of the reason types will be handled in the dashboard
         {{ dbt_utils.pivot(
             'str_sales_reason_type',
             dbt_utils.get_column_values(ref('dim_sales_orders_reasons'), 'str_sales_reason_type'),

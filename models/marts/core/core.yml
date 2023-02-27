@@ -5,7 +5,7 @@ models:
 ############## DIM_LOCATIONS ####################
 #################################################
     - name:  dim_locations
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Locations for stores and people associated"
       config:
         schema: core_marts
         full_refresh: true
@@ -55,7 +55,7 @@ models:
 ######### DIM_SALES_ORDERS_REASONS ##############
 #################################################
     - name:  dim_sales_orders_reasons
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Reasons of the sales orders"
       config:
         schema: core_marts
         full_refresh: true
@@ -87,7 +87,7 @@ models:
 ############### DIM_CUSTOMERS ######################
 #################################################
     - name:  dim_customers
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Stores and People attributes"
       config:
         schema: core_marts
         full_refresh: true
@@ -138,10 +138,10 @@ models:
 ############## FCT_SALES ########################
 #################################################
     - name:  fct_sales
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Adventure Works fact sales"
       config:
         schema: core_marts
-        full_refresh: true
+        full_refresh: false
         materialized: incremental
         incremental_strategy: merge
         partition_by: {'field': 'dte_order_date', 'data_type': 'DATE'}
@@ -238,7 +238,7 @@ models:
 ############## DIM_PRODUCTS #####################
 #################################################
     - name:  dim_products
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Adventure Works Products"
       config:
         schema: core_marts
         full_refresh: true

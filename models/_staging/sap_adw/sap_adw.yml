@@ -5,7 +5,7 @@ models:
 ################# STG_PEOPLE ####################
 #################################################
     - name:  stg_people    
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "All data of people from sap_adw"
       config:
         schema: staging
         full_refresh: true
@@ -59,7 +59,7 @@ models:
 ############## STG_LOCATIONS ####################
 #################################################
     - name:  stg_locations    
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Staging to get location data from sap_adw"
       config:
         schema: staging
         full_refresh: true
@@ -130,7 +130,7 @@ models:
 ############## STG_STORES #######################
 #################################################
     - name:  stg_stores
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Staging to get store from sap_adw"
       config:
         schema: staging
         full_refresh: true
@@ -155,7 +155,7 @@ models:
 ######### STG_SALES_ORDERS_REASONS ##############
 #################################################
     - name:  stg_sales_orders_reasons
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Staging to get sales orders reasons from sap_adw"
       config:
         schema: staging
         full_refresh: true
@@ -178,7 +178,7 @@ models:
 ############# STG_SALES_ORDERS ##################
 #################################################
     - name:  stg_sales_orders
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Staging to get Sales Orders from sap_adw"
       config:
         schema: staging
         full_refresh: true
@@ -265,7 +265,7 @@ models:
 ################ STG_CUSTOMERS ##################
 #################################################
     - name:  stg_customers
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Staging to get sales customers from sap_adw"
       config:
         schema: staging
         full_refresh: true
@@ -290,7 +290,7 @@ models:
 ################ STG_PRODUCTS ##################
 #################################################
     - name:  stg_products
-      description: "Tabela staging de eventos do firebase. Particionada por dt_event_date."
+      description: "Staging to get sales products from sap_adw"
       config:
         schema: staging
         full_refresh: true
