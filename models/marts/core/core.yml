@@ -211,8 +211,6 @@ models:
           description: "Description of int_credit_card_approval_code"
         - name: int_currency_rate_id
           description: "Description of int_currency_rate_id"
-        - name: flt_subtotal
-          description: "Description of flt_subtotal"
         - name: flt_tax_amt
           description: "Description of flt_tax_amt"
         - name: flt_freight
