@@ -17,6 +17,8 @@ The main goal of this project is to demonstrate the implementation of an analyti
 
 The SAP Adventure Works database is a sample database widely used for testing and learning purposes. It provides a realistic dataset that represents a fictional bicycle company's operations, including sales, production, and customer information.
 
+DASHBOARD LINK: https://lookerstudio.google.com/reporting/bc70f7b5-a976-46a2-bf2f-1aa7be288cee
+
 ## Architecture
 
 The project architecture is designed to facilitate data transformation, modeling, and visualization. The following files and directories are included:
